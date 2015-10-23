@@ -5,7 +5,7 @@
 			this.context=str=str.replace(/\s{2,}/g,' ').replace(/^\s|\s$/,'').replace(/\s?,\s?/,',');
 			var sel=this.sel=document.querySelectorAll(str);
 			//for(var i=0,len=this.sel.length;i<len;i++) query.push(sel[i]);
-			alert(sel);
+			return sel;
 			
 		}
 	}
