@@ -3,7 +3,7 @@
 <head>
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>zonybir's h5</title>
+	<title>zonybir for you who lving.</title>
 	<script type="text/javascript" src='../public/js/query.js'></script>
 	<link rel="stylesheet" type="text/css" href="../public/css/base.css">
 	<link rel="stylesheet" type="text/css" href="../public/css/wap.css">
@@ -12,6 +12,7 @@
 <img src="../public/images/mus_i_bg.png" class="mus_icon_bg">
 <img src="../public/images/mus_icon.png" class="mus_icon 2play_animation play">
 <audio src='../public/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
+<div class="bg_img_box"><img src="../public/images/img_one.jpg"></div>
 <div class="main"></div>
 </body>
 <script type="text/javascript">
@@ -69,19 +70,19 @@
 				clearTimeout(play_ani.status);
 			}
 		},false);
-		
+		setTimeout(function(){player.play();},1000);
 		var scroll_bg={
 			bgimg:'',
 			win:'',
 			scale:'',
-			body:'',
+			ele:'',
 			init:function(){
 				this.bgimg={x:1280,y:1024};
 				this.win.y=document.body.clientHeight || document.documentElement.clientHeight;
 				this.win.x=document.body.clientWidth || document.documentElement.clientWidth;
 				this.scale.y=(this.bgimg.y-this.win.y)/2;
 				this.scale.x=(this.bgimg.x-this.win.x)/2;
-				this.body=$('body')[0];
+				this.ele=$('.bg_img_box img')[0];
 				//console.log(this.body.style);
 				this.event();
 			},
@@ -89,12 +90,10 @@
 				var _t=this;
 				window.onscroll=function(){
 					var scrollTop=document.body.scrollTop;
-					console.log(scrollTop);
-					if (scrollTop <= 20) {_t.body.style.backgroundPosition='-2px -2px';return;}
-					_t.body.style.backgroundPosition=-scrollTop/15+ 'px '+scrollTop/1.8+'px';
-					
-					
-
+					//console.log(scrollTop);
+					//if (scrollTop <= 20) {_t.body.style[transform]='translate(-2px -2px';return;}
+					//_t.ele.style[transform]='translate('-scrollTop/15+ 'px '+scrollTop/1.8+'px)';
+					_t.ele.style[transform]='translate(-'+scrollTop/15+ 'px,'+scrollTop/1.8+'px)';					
 				}
 			}
 		}
