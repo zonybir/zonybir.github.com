@@ -1,0 +1,23 @@
+{
+  "name": "zonybir_github",
+  "version": "1.0.0",
+  "description": "to text ",
+  "main": "text.js",
+  "scripts": {
+    "test": "text"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zonybir/textz.git"
+  },
+  "keywords": [
+    "html5",
+    "h5"
+  ],
+  "author": "zonybir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zonybir/textz/issues"
+  },
+  "homepage": "https://github.com/zonybir/textz#readme"
+}

@@ -4,15 +4,15 @@
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>zonybir</title>
-	<script type="text/javascript" src='../public/js/query.js'></script>
-	<link rel="stylesheet" type="text/css" href="../public/css/base.css">
-	<link rel="stylesheet" type="text/css" href="../public/css/wap.css">
+	<script type="text/javascript" src='/js/query.js'></script>
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/wap.css">
 </head>
 <body>
-<img src="../public/images/mus_i_bg.png" class="mus_icon_bg">
-<img src="../public/images/mus_icon.png" class="mus_icon 2play_animation play">
-<audio src='../public/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
-<div class="bg_img_box"><img src="../public/images/img_one.jpg"></div>
+<img src="/images/mus_i_bg.png" class="mus_icon_bg">
+<img src="/images/mus_icon.png" class="mus_icon 2play_animation play">
+<audio src='/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
+<div class="bg_img_box"><img src="/images/img_one.jpg"></div>
 <div class="main"></div>
 </body>
 <script type="text/javascript">
@@ -78,8 +78,8 @@
 			ele:'',
 			init:function(){
 				this.bgimg={x:1280,y:1024};
-				this.win.y=document.body.clientHeight || document.documentElement.clientHeight;
-				this.win.x=document.body.clientWidth || document.documentElement.clientWidth;
+				this.win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
+				this.win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
 				this.scale.y=(this.bgimg.y-this.win.y)/2;
 				this.scale.x=(this.bgimg.x-this.win.x)/2;
 				this.ele=$('.bg_img_box img')[0];
@@ -89,8 +89,9 @@
 			event:function(){
 				var _t=this;
 				window.onscroll=function(){
-					var scrollTop=document.body.scrollTop;
-					//console.log(scrollTop);
+					var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+					console.log(scrollTop);
+					//scrollTop=scrollTop>=1056 ? 1056 :scrollTop;
 					_t.ele.style[transform]='translate(-'+scrollTop/15+ 'px,'+scrollTop/1.8+'px)';					
 				}
 			}
