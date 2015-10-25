@@ -13,10 +13,15 @@
 <img src="/images/mus_icon.png" class="mus_icon 2play_animation play">
 <audio src='/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
 <div class="bg_img_box"><img src="/images/img_one.jpg"></div>
-<div class="main"></div>
+<div class="main">
+	<div class="container">1111111</div>
+	<div class="container">2222222</div>
+	<div class="container">3333333</div>
+</div>
 </body>
 <script type="text/javascript">
 	window.onload=function(){
+		$('div').event('click',function(){alert('click body');})
 		function hasClass(ele,cls) {
 			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
 		}
@@ -97,6 +102,9 @@
 			}
 		}
 		scroll_bg.init();
+		var zh=document.body.height || document.documentElement.clientHeight;
+		alert(zh);
+		$('body')[0].style.height=zh+'px';
 	}
 </script>
 </html>
