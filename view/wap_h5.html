@@ -21,7 +21,7 @@
 </body>
 <script type="text/javascript">
 	window.onload=function(){
-		$('div').event('click',function(){alert('click body');})
+		$('div').touch('up',function(event){console.log(arguments)})
 		function hasClass(ele,cls) {
 			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
 		}
