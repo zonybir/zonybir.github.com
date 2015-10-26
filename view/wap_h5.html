@@ -65,14 +65,15 @@
 			win:'null',
 			scale:'',
 			ele:'',
-			page:1,
+			page:0,
 			init:function(){
 				this.bgimg={x:1280,y:1024};
-				this.win={};
-				this.win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
-				this.win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
-				this.scale.y=(this.bgimg.y-this.win.y)/2;
-				this.scale.x=(this.bgimg.x-this.win.x)/2;
+				var win={};
+				this.scale={};
+				win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
+				win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
+				this.scale.y=(this.bgimg.y-win.y)/2;
+				this.scale.x=(this.bgimg.x-win.x)/4;
 				this.ele=$('.bg_img_box img')[0];
 				console.log(this.win.x);
 				//console.log(this.body.style);
@@ -87,10 +88,16 @@
 					_t.ele.style[transform]='translate(-'+scrollTop/15+ 'px,'+scrollTop/1.8+'px)';					
 				}
 				$('body').touch('up',function(){
-					_t.ele.style[transform]='translate(-'+_t.win.x*_t.page*0.001+ 'px,'+_t.win.y*_t.page*0.05+'px)';
-					_t.page++;
+					_t.page=_t.page++ >= 2 ? 2 : _t.page;
+					_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
+					
+
 					console.log(_t.page);
-					console.log(_t.win.x);
+					console.log(_t.scale);
+				})
+				$('body').touch('down',function(){
+					_t.page=_t.page-- <= 0 ? 0 :_t.page;
+					 _t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
 				})
 			}
 		}
