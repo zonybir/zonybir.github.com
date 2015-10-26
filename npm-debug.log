@@ -1,0 +1,94 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /home/zonybir/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/home/zonybir/.npm/zonybir_github/1.0.0/package.tgz', '.' ]
+11 verbose tarball /home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+12 verbose folder .
+13 info prepublish zonybir_github@1.0.0
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /home/zonybir/.npm/1f1177db-tar.lock
+16 silly lockFile acfe01b6-zonybir-github-1-0-0-package-tgz tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+17 verbose lock tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz /home/zonybir/.npm/acfe01b6-zonybir-github-1-0-0-package-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile acfe01b6-zonybir-github-1-0-0-package-tgz tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+21 silly lockFile acfe01b6-zonybir-github-1-0-0-package-tgz tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+22 silly lockFile a70dce58-npm-zonybir-github-1-0-0-package /home/zonybir/.npm/zonybir_github/1.0.0/package
+23 verbose lock /home/zonybir/.npm/zonybir_github/1.0.0/package /home/zonybir/.npm/a70dce58-npm-zonybir-github-1-0-0-package.lock
+24 silly lockFile a70dce58-npm-zonybir-github-1-0-0-package /home/zonybir/.npm/zonybir_github/1.0.0/package
+25 silly lockFile a70dce58-npm-zonybir-github-1-0-0-package /home/zonybir/.npm/zonybir_github/1.0.0/package
+26 silly lockFile 3a52ce78- .
+27 silly lockFile 3a52ce78- .
+28 silly resolved [ { name: 'zonybir_github',
+28 silly resolved     version: '1.0.0',
+28 silly resolved     description: 'to text ',
+28 silly resolved     main: 'text.js',
+28 silly resolved     scripts: { test: 'text' },
+28 silly resolved     repository: { type: 'git', url: 'git+https://github.com/zonybir/textz.git' },
+28 silly resolved     keywords: [ 'html5', 'h5' ],
+28 silly resolved     author: { name: 'zonybir' },
+28 silly resolved     license: 'ISC',
+28 silly resolved     bugs: { url: 'https://github.com/zonybir/textz/issues' },
+28 silly resolved     homepage: 'https://github.com/zonybir/textz#readme',
+28 silly resolved     readme: 'github 个人主页项目\n',
+28 silly resolved     readmeFilename: 'README.md',
+28 silly resolved     gitHead: '2771551db06ff0f862906f971fe41fe1d957dee6',
+28 silly resolved     _id: 'zonybir_github@1.0.0',
+28 silly resolved     _shasum: '181fad795ee6fe8afd1166fbd21b071204804c25',
+28 silly resolved     _from: '.' } ]
+29 info install zonybir_github@1.0.0 into /usr/lib
+30 info installOne zonybir_github@1.0.0
+31 verbose lib/node_modules/zonybir_github unbuild
+32 verbose tar unpack /home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+33 silly lockFile bbed7642--lib-node-modules-zonybir-github tar:///usr/lib/node_modules/zonybir_github
+34 verbose lock tar:///usr/lib/node_modules/zonybir_github /home/zonybir/.npm/bbed7642--lib-node-modules-zonybir-github.lock
+35 silly lockFile acfe01b6-zonybir-github-1-0-0-package-tgz tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz
+36 verbose lock tar:///home/zonybir/.npm/zonybir_github/1.0.0/package.tgz /home/zonybir/.npm/acfe01b6-zonybir-github-1-0-0-package-tgz.lock
+37 silly gunzTarPerm modes [ '775', '664' ]
+38 error Error: EACCES, mkdir '/usr/lib/node_modules/zonybir_github'
+38 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/zonybir_github']
+38 error   errno: 3,
+38 error   code: 'EACCES',
+38 error   path: '/usr/lib/node_modules/zonybir_github',
+38 error   fstream_type: 'Directory',
+38 error   fstream_path: '/usr/lib/node_modules/zonybir_github',
+38 error   fstream_class: 'DirWriter',
+38 error   fstream_stack:
+38 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+38 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+38 error      'Object.oncomplete (fs.js:108:15)' ] }
+39 error Please try running this command again as root/Administrator.
+40 error System Linux 3.16.0-30-generic
+41 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g"
+42 error cwd /var/www/html/zonyPages
+43 error node -v v0.10.37
+44 error npm -v 1.4.28
+45 error path /usr/lib/node_modules/zonybir_github
+46 error fstream_path /usr/lib/node_modules/zonybir_github
+47 error fstream_type Directory
+48 error fstream_class DirWriter
+49 error code EACCES
+50 error errno 3
+51 error stack Error: EACCES, mkdir '/usr/lib/node_modules/zonybir_github'
+52 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+52 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+52 error fstream_stack Object.oncomplete (fs.js:108:15)
+53 verbose exit [ 3, true ]

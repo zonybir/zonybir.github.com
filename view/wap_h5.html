@@ -4,15 +4,15 @@
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>zonybir</title>
-	<script type="text/javascript" src='/js/query.js'></script>
-	<link rel="stylesheet" type="text/css" href="/css/base.css">
-	<link rel="stylesheet" type="text/css" href="/css/wap.css">
+	<script type="text/javascript" src='../public/js/query.js'></script>
+	<link rel="stylesheet" type="text/css" href="../public/css/base.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/wap.css">
 </head>
 <body>
-<img src="/images/mus_i_bg.png" class="mus_icon_bg">
-<img src="/images/mus_icon.png" class="mus_icon 2play_animation play">
-<audio src='/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
-<div class="bg_img_box"><img src="/images/img_one.jpg"></div>
+<img src="../public/images/mus_i_bg.png" class="mus_icon_bg">
+<img src="../public/images/mus_icon.png" class="mus_icon 2play_animation play">
+<audio src='../public/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
+<div class="bg_img_box"><img src="../public/images/img_one.jpg"></div>
 <div class="main">
 	<div class="container">1111111</div>
 	<div class="container">2222222</div>
@@ -21,22 +21,7 @@
 </body>
 <script type="text/javascript">
 	window.onload=function(){
-		$('div').touch('up',function(event){console.log(arguments)})
-		function hasClass(ele,cls) {
-			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
-		}
-
-		function addClass(ele,cls) {
-			if (!hasClass(ele,cls)) ele.className=ele.className.replace(/\s+/g,' ') +' '+cls;
-		}
-
-		function removeClass(ele,cls) {
-			if (hasClass(ele,cls)) {
-				var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
-				ele.className=ele.className.replace(reg,' ').replace(/\s+/,' ');
-			}
-		}
-		
+		$('.container').css({fontSize:'24px'});
 		var transform='';
 		(function(){
 			var ele=$('img')[0].style,u='undefined';
@@ -47,7 +32,7 @@
 		var play_ani={
 			play_icon:'',
 			oldDeg:0,
-			statu:'',
+			status:'',
 			start:function(){
 				var _t=this,deg=_t.oldDeg;
 				function animate(){
@@ -64,9 +49,8 @@
 		} 
 		play_ani.init();
 		var player=document.getElementById('player');
-		var controller=document.querySelectorAll('.play');
 		var play_animate_class='play_animation';
-		controller[0].addEventListener('click',function(){
+		$('.play').addevent('click',function(){
 			if(player.paused){
 				player.play();
 				play_ani.start();
@@ -74,20 +58,23 @@
 				player.pause();
 				clearTimeout(play_ani.status);
 			}
-		},false);
+		});
 		setTimeout(function(){player.play();},1000);
 		var scroll_bg={
 			bgimg:'',
-			win:'',
+			win:'null',
 			scale:'',
 			ele:'',
+			page:1,
 			init:function(){
 				this.bgimg={x:1280,y:1024};
+				this.win={};
 				this.win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
 				this.win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
 				this.scale.y=(this.bgimg.y-this.win.y)/2;
 				this.scale.x=(this.bgimg.x-this.win.x)/2;
 				this.ele=$('.bg_img_box img')[0];
+				console.log(this.win.x);
 				//console.log(this.body.style);
 				this.event();
 			},
@@ -99,6 +86,12 @@
 					//scrollTop=scrollTop>=1056 ? 1056 :scrollTop;
 					_t.ele.style[transform]='translate(-'+scrollTop/15+ 'px,'+scrollTop/1.8+'px)';					
 				}
+				$('body').touch('up',function(){
+					_t.ele.style[transform]='translate(-'+_t.win.x*_t.page*0.001+ 'px,'+_t.win.y*_t.page*0.05+'px)';
+					_t.page++;
+					console.log(_t.page);
+					console.log(_t.win.x);
+				})
 			}
 		}
 		scroll_bg.init();
