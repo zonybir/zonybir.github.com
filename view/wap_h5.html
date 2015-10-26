@@ -73,31 +73,27 @@
 				win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
 				win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
 				this.scale.y=(this.bgimg.y-win.y)/2;
-				this.scale.x=(this.bgimg.x-win.x)/4;
+				this.scale.x=(this.bgimg.x-win.x)/24;
 				this.ele=$('.bg_img_box img')[0];
-				console.log(this.win.x);
+				console.log(win.x);
 				//console.log(this.body.style);
 				this.event();
 			},
 			event:function(){
 				var _t=this;
-				window.onscroll=function(){
-					var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
-					console.log(scrollTop);
-					//scrollTop=scrollTop>=1056 ? 1056 :scrollTop;
-					_t.ele.style[transform]='translate(-'+scrollTop/15+ 'px,'+scrollTop/1.8+'px)';					
-				}
 				$('body').touch('up',function(){
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
-					_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
-					
-
+					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
+					_t.ele.style.top=_t.scale.y*_t.page+'px';
+					_t.ele.style.left=-_t.scale.x*_t.page+'px';
 					console.log(_t.page);
 					console.log(_t.scale);
 				})
 				$('body').touch('down',function(){
 					_t.page=_t.page-- <= 0 ? 0 :_t.page;
-					 _t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
+					 //_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
+					 _t.ele.style.top=_t.scale.y*_t.page+'px';
+					_t.ele.style.left=-_t.scale.x*_t.page+'px';
 				})
 			}
 		}
