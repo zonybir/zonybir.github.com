@@ -16,16 +16,16 @@
 		sel:null,
 		each:function(arr,fn){
 			for (var i in arr){
-				if (typeof arr[i] === 'object') fn.call(arr[i],i,arr[i]);
+				if (typeof arr[i] !== 'function' && typeof arr[i] !== 'number') fn.call(arr[i],i,arr[i]);
 			}
 		},
 		css:function(obj){
 			var t=this;
 			t.each(t.sel,function(i,ele){
 				console.log(ele);
-				t.each(obj,function(i,sty){
-					ele.style[i]=sty;
-
+				t.each(obj,function(j,sty){
+					ele.style[j]=sty;
+					console.log(j+'-----'+sty);
 				})
 			})
 		},
@@ -102,7 +102,6 @@
 		t.each(t.sel,function(i,ele){
 			var a=new addTouch(type,ele);
 			a.init();
-			console.log(i+' '+ele);
 		})
 	}
 	//pc 端通用时间注册

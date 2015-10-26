@@ -21,7 +21,6 @@
 </body>
 <script type="text/javascript">
 	window.onload=function(){
-		$('.container').css({fontSize:'24px'});
 		var transform='';
 		(function(){
 			var ele=$('img')[0].style,u='undefined';
@@ -66,6 +65,7 @@
 			scale:'',
 			ele:'',
 			page:0,
+			status:false,
 			init:function(){
 				this.bgimg={x:1280,y:1024};
 				var win={};
@@ -75,12 +75,34 @@
 				this.scale.y=(this.bgimg.y-win.y)/2;
 				this.scale.x=(this.bgimg.x-win.x)/24;
 				this.ele=$('.bg_img_box img')[0];
-				console.log(win.x);
+				//console.log(win.y);
+				var wh=window.innerHeight || document.body.clientHeight;
+				wh=wh+'px';
+				//alert(wh);
+				$('.container').css({height:wh,fontSize:'10px'});
 				//console.log(this.body.style);
 				this.event();
 			},
 			event:function(){
-				var _t=this;
+				var _t=this,x=0,y=0,s;
+
+				window.onscroll=function(event){	
+					if(_t.status) {
+						document.body.scrollTop=0;
+						return};	
+					clearTimeout(s);		
+					var newTop=window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动条距顶端的距离  
+					if((newTop-y)>= 0){
+						document.body.scrollTop=0;
+						_t.page=_t.page++>= 2?2:_t.page;
+						_t.ele.style.top=_t.scale.y*_t.page+'px';
+						_t.ele.style.left=-_t.scale.x*_t.page+'px';
+						_t.status=true;
+						s=setTimeout(function(){_t.status=false;},5000);
+					}else{
+
+					} 
+				}
 				$('body').touch('up',function(){
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
 					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
