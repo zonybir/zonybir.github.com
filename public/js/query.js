@@ -72,14 +72,19 @@
 				var _t=this;
 				t.event('touchstart',_t.target,function(event){
 					event = event || window.event;
+					event.preventDefault();
+					event.cancelable=true;
 					event=event.touches[0];
 					_t.x=event.pageX;
 					_t.y=event.pageY;
+					
 					//console.log(_t.x+'------>'+_t.y);
 				})
 				t.event('touchmove',_t.target,function(event){
 					if(_t.status) return;
 					event = event || window.event;
+					event.preventDefault();
+					event.cancelable=true;
 					event=event.touches[0];
 					//console.log(event);
 					var bx=event.pageX -_t.x,
@@ -89,6 +94,7 @@
 						_t.directive(bx,by);
 						_t.status=true;
 					}
+					
 				})
 				t.event('touchend',_t.target,function(){_t.status=false;})
 			},
