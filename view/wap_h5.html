@@ -92,7 +92,7 @@
 			event:function(){
 				var _t=this,x=0,y=0,s;
 
-				window.onscroll=function(event){	
+				/*window.onscroll=function(event){	
 					event=event || window.event;
 					console.log(event);
 					event.preventDefault();
@@ -117,8 +117,8 @@
 					}else{
 						return;
 					} 
-				}
-				/*$('body').touch('up',function(){
+				}*/
+				$('body').touch('up',function(){
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
 					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
 					_t.ele.style.top=_t.scale.y*_t.page+'px';
@@ -131,7 +131,7 @@
 					 //_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
 					 _t.ele.style.top=_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-				})*/
+				})
 			},
 			setScroll:function(num){
 				if(document.body.scrollTop) document.body.scrollTop=num;
