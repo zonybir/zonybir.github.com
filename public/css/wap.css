@@ -1,5 +1,5 @@
 body{width: 100%;overflow: hidden;height: 559px;}
-.mus_icon{width: 30px;height: 30px;position: fixed;right: 17px;top: 17px;border-radius: 50%;z-index: 999;border:1px solid red;}
+.mus_icon{width: 30px;height: 30px;position: fixed;right: 17px;top: 17px;border-radius: 50%;z-index: 999;}
 .mus_icon_bg{width: 45px;height: 45px;position: fixed;right: 10px;top: 10px;border-radius: 50%;z-index: 998;}
 .play_animation{animation:mus_icon 5s linear 0s infinite normal;webkit-animation:mus_icon 5s linear 0s infinite normal;moz-animation:mus_icon 5s linear 0s infinite normal;-ms-animation:mus_icon 5s linear 0s infinite normal;}
 .main{width: 100%;position: relative;overflow: hidden;}
