@@ -28,7 +28,7 @@ window.onload=function(){
 		var player=document.getElementById('player');
 		var play_animate_class='play_animation';
 		$('.play').addevent('touchstart',function(){
-			alert(1111);
+			//alert(1111);
 			if(player.paused){
 				player.play();
 				play_ani.start();
