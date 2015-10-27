@@ -93,7 +93,10 @@
 				var _t=this,x=0,y=0,s;
 
 				window.onscroll=function(event){	
-					alert(111);
+					event=event || window.event;
+					console.log(event);
+					event.preventDefault();
+					event.cancelable=true;
 					if(_t.status) {
 						_t.setScroll(0);
 						return
