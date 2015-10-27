@@ -28,6 +28,7 @@
 					console.log(j+'-----'+sty);
 				})
 			})
+			return this;
 		},
 		hasClass:function(ele,cls){
 			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
@@ -35,8 +36,10 @@
 		addClass:function(cls){
 			var t=this;
 			this.each(this.sel,function(i,ele){
-				if(t.hasClass(ele,cls)) ele.className=ele.className.replace(/\s+/g,' ')+' '+cls;
+				if(!t.hasClass(ele,cls)) ele.className=ele.className.replace(/\s+/g,' ')+' '+cls;
+				//console.log(i+'------->'+ele);
 			})
+			return this;
 		},
 		removeClass:function(cls){
 			var t=this;

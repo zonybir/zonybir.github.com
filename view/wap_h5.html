@@ -14,7 +14,13 @@
 <audio src='../public/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
 <div class="bg_img_box"><img src="../public/images/img_one.jpg"></div>
 <div class="main">
-	<div class="container">1111111</div>
+	<div class="container">
+		<p>我们都还在这里</p>
+		<p>可是，为什么还在这里</p>
+		<p>逃离这个星球</p>
+		<p>远走他乡</p>
+		<p>却又，不怎么欢喜着</p>
+	</div>
 	<div class="container">2222222</div>
 	<div class="container">3333333</div>
 </div>
@@ -79,7 +85,7 @@
 				var wh=window.innerHeight || document.body.clientHeight;
 				wh=wh+'px';
 				//alert(wh);
-				$('.container').css({height:wh,fontSize:'10px'});
+				$('.container').css({height:wh,fontSize:'10px'}).addClass('animate_z5');
 				//console.log(this.body.style);
 				this.event();
 			},
@@ -88,22 +94,27 @@
 
 				window.onscroll=function(event){	
 					if(_t.status) {
-						document.body.scrollTop=0;
-						return};	
+						_t.setScroll(0);
+						return
+					}	
 					clearTimeout(s);		
 					var newTop=window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动条距顶端的距离  
 					if((newTop-y)>= 0){
-						document.body.scrollTop=0;
-						_t.page=_t.page++>= 2?2:_t.page;
+						_t.setScroll(0);
+						$('.container')[_t.page].style.height=0;
+						_t.page=_t.page++>= 3?3:_t.page;
 						_t.ele.style.top=_t.scale.y*_t.page+'px';
 						_t.ele.style.left=-_t.scale.x*_t.page+'px';
 						_t.status=true;
+						console.log($('.container'));
+						
+
 						s=setTimeout(function(){_t.status=false;},5000);
 					}else{
-
+						return;
 					} 
 				}
-				$('body').touch('up',function(){
+				/*$('body').touch('up',function(){
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
 					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
 					_t.ele.style.top=_t.scale.y*_t.page+'px';
@@ -116,7 +127,11 @@
 					 //_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
 					 _t.ele.style.top=_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-				})
+				})*/
+			},
+			setScroll:function(num){
+				if(document.body.scrollTop) document.body.scrollTop=num;
+				else if(document.documentElement.scrollTop) document.documentElement.scrollTop=num;
 			}
 		}
 		scroll_bg.init();
