@@ -7,12 +7,21 @@
 	<script type="text/javascript" src='../public/js/query.js'></script>
 	<link rel="stylesheet" type="text/css" href="../public/css/base.css">
 	<link rel="stylesheet" type="text/css" href="../public/css/wap.css">
+
+	<script type="text/javascript" src='../public/js/main.js'></script>
 </head>
 <body>
 <img src="../public/images/mus_i_bg.png" class="mus_icon_bg">
 <img src="../public/images/mus_icon.png" class="mus_icon 2play_animation play">
 <audio src='../public/music/leave there.mp3' autoplay='autoplay' id="player" loop='loop'></audio>
-<div class="bg_img_box"><img src="../public/images/img_one.jpg"></div>
+<div class="bg_img_box">
+	<img src="../public/images/img_one.jpg">
+	<div class="bg_one">
+		<canvas id='bg_cav'></canvas>
+		<canvas id='bg_cav_tw'></canvas>
+		<canvas id='bg_cav_th'></canvas>
+	</div>
+</div>
 <div class="main">
 	<div class="container">
 		<p>我们都还在这里</p>
@@ -40,128 +49,4 @@
 	</div>
 </div>
 </body>
-<script type="text/javascript">
-	window.onload=function(){
-		var transform='';
-		(function(){
-			var ele=$('img')[0].style,u='undefined';
-			if (typeof ele.transform !== u) transform='transform';
-			else if(typeof ele.webkitTransform !== u) transform='webkitTransform';
-			else if(typeof ele.mozTransform !== u) transform='mozTransform';
-		}());
-		var play_ani={
-			play_icon:'',
-			oldDeg:0,
-			status:'',
-			start:function(){
-				var _t=this,deg=_t.oldDeg;
-				function animate(){
-					_t.oldDeg=deg=(deg+1)>= 360 ? 0 : (deg+1) ;
-					_t.play_icon.style[transform]='rotate('+deg+'deg)';
-					_t.status=setTimeout(animate,20);
-				}
-				animate();
-			},
-			init:function(){
-				this.play_icon=$('.mus_icon')[0];
-				this.start();
-			}
-		} 
-		play_ani.init();
-		var player=document.getElementById('player');
-		var play_animate_class='play_animation';
-		$('.play').addevent('click',function(){
-			if(player.paused){
-				player.play();
-				play_ani.start();
-			}else{
-				player.pause();
-				clearTimeout(play_ani.status);
-			}
-		});
-		setTimeout(function(){player.play();},1000);
-		var scroll_bg={
-			bgimg:'',
-			win:'null',
-			scale:'',
-			ele:'',
-			page:0,
-			status:false,
-			init:function(){
-				this.bgimg={x:1280,y:1024};
-				this.win={};
-				this.scale={};
-				var wh=window.innerHeight || document.body.clientHeight;
-				wh=wh;
-				//$('body').css({height:wh*3+'px'});
-				this.win.y=document.body.height || document.documentElement.clientHeight || document.body.offsetHeight;
-				this.win.x=document.body.width || document.documentElement.clientWidth || document.body.offsetWidth;
-				this.scale.y=(this.bgimg.y-this.win.y)/2;
-				this.scale.x=(this.bgimg.x-this.win.x)/24;
-				this.ele=$('.bg_img_box img')[0];
-				console.log(this.scale.x+'|------|'+this.scale.y);
-				
-				//alert(wh);
-				$('.container').css({height:wh+'px',fontSize:'10px'}).addClass('animate_z5');
-				
-				//console.log(this.body.style);
-				this.event();
-			},
-			event:function(){
-				var _t=this,x=0,y=0,s;
-
-				/*window.onscroll=function(event){	
-					event=event || window.event;
-					console.log(event);
-					event.preventDefault();
-					event.cancelable=true;
-					if(_t.status) {
-						_t.setScroll(0);
-						return
-					}	
-					clearTimeout(s);		
-					var newTop=window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; //滚动条距顶端的距离  
-					if((newTop-y)>= 0){
-						_t.setScroll(0);
-						$('.container')[_t.page].style.height=0;
-						_t.page=_t.page++>= 3?3:_t.page;
-						_t.ele.style.top=_t.scale.y*_t.page+'px';
-						_t.ele.style.left=-_t.scale.x*_t.page+'px';
-						_t.status=true;
-						console.log($('.container'));
-						
-
-						s=setTimeout(function(){_t.status=false;},5000);
-					}else{
-						return;
-					} 
-				}*/
-				$('body').touch('up',function(){
-					$('.container')[_t.page].style.height=0;
-					_t.page=_t.page++ >= 2 ? 2 : _t.page;
-					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
-					_t.ele.style.top=-_t.scale.y*_t.page+'px';
-					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-					
-				})
-				$('body').touch('down',function(){
-					
-					_t.page=_t.page-- <= 0 ? 0 :_t.page;
-					$('.container')[_t.page].style.height=_t.win.y+'px';
-					 //_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
-					 _t.ele.style.top=-_t.scale.y*_t.page+'px';
-					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-				})
-			},
-			setScroll:function(num){
-				if(document.body.scrollTop) document.body.scrollTop=num;
-				else if(document.documentElement.scrollTop) document.documentElement.scrollTop=num;
-			}
-		}
-		scroll_bg.init();
-		var zh=document.body.height || document.documentElement.clientHeight;
-		alert(zh);
-		
-	}
-</script>
 </html>
