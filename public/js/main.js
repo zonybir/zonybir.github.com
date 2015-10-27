@@ -82,8 +82,11 @@ window.onload=function(){
 				context.fillStyle='#293869';
 				context.lineWidth=1;//图形边框宽度
 				var i=0,len=this.cav_list.length,_t=this;
+				context.beginPath();
 				function creat_star(center){
-					if(i>= len) return;
+					if(i>= len) {
+						context.closePath();
+						return;}
 					context.moveTo(center.x,center.y);
 					context.lineTo(center.x-45,center.y+35);
 					context.lineTo(center.x+15,center.y+20);
