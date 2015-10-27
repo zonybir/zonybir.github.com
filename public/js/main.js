@@ -27,7 +27,8 @@ window.onload=function(){
 		play_ani.init();
 		var player=document.getElementById('player');
 		var play_animate_class='play_animation';
-		$('.play').addevent('click',function(){
+		$('.play').addevent('click touchstart',function(){
+			alert(1111);
 			if(player.paused){
 				player.play();
 				play_ani.start();
@@ -69,7 +70,7 @@ window.onload=function(){
 				(function(){
 					function random(){
 						return{
-							x:Math.floor(30+Math.random()*(_t.win.x-15)),
+							x:Math.floor(30+Math.random()*(_t.win.x-15)), // Math.floor(min+Math.random()*(max-min));
 							y:Math.floor(30+Math.random()*(_t.win.y-15))
 						}
 					}
@@ -80,7 +81,7 @@ window.onload=function(){
 					function creat_star(center){
 						context.moveTo(center.x,center.y);
 						 context.lineTo(center.x-45,center.y+35);
-						 context.lineTo(center.x+20,center.y+20);
+						 context.lineTo(center.x+15,center.y+20);
 						 context.lineTo(center.x-45,center.y+10);
 						 context.lineTo(center.x-10,center.y+40);
 						 context.lineTo(center.x,center.y);
