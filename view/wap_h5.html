@@ -21,8 +21,23 @@
 		<p>远走他乡</p>
 		<p>却又，不怎么欢喜着</p>
 	</div>
-	<div class="container">2222222</div>
-	<div class="container">3333333</div>
+	<div class="container">
+		<p>那年你踏上暮色他乡</p>
+		<p>人静的雨夜</p>
+		<p>想起离别时它</p>
+		<p>神马乱七八糟</p>
+		<p>不懂不解不知</p>
+		<p>哈哈哈哈哈哈</p>
+	</div>
+	<div class="container">
+		<p>32</p>
+		<p>33</p>
+		<p>34</p>
+		<p>35</p>
+		<p>36</p>
+		<p>37</p>
+		<p>38</p>
+	</div>
 </div>
 </body>
 <script type="text/javascript">
@@ -74,18 +89,21 @@
 			status:false,
 			init:function(){
 				this.bgimg={x:1280,y:1024};
-				var win={};
+				this.win={};
 				this.scale={};
-				win.y=document.body.clientHeight || document.documentElement.clientHeight || document.body.offsetHeight;
-				win.x=document.body.clientWidth || document.documentElement.clientWidth || document.body.offsetWidth;
-				this.scale.y=(this.bgimg.y-win.y)/2;
-				this.scale.x=(this.bgimg.x-win.x)/24;
-				this.ele=$('.bg_img_box img')[0];
-				//console.log(win.y);
 				var wh=window.innerHeight || document.body.clientHeight;
-				wh=wh+'px';
+				wh=wh;
+				//$('body').css({height:wh*3+'px'});
+				this.win.y=document.body.height || document.documentElement.clientHeight || document.body.offsetHeight;
+				this.win.x=document.body.width || document.documentElement.clientWidth || document.body.offsetWidth;
+				this.scale.y=(this.bgimg.y-this.win.y)/2;
+				this.scale.x=(this.bgimg.x-this.win.x)/24;
+				this.ele=$('.bg_img_box img')[0];
+				console.log(this.scale.x+'|------|'+this.scale.y);
+				
 				//alert(wh);
-				$('.container').css({height:wh,fontSize:'10px'}).addClass('animate_z5');
+				$('.container').css({height:wh+'px',fontSize:'10px'}).addClass('animate_z5');
+				
 				//console.log(this.body.style);
 				this.event();
 			},
@@ -119,17 +137,19 @@
 					} 
 				}*/
 				$('body').touch('up',function(){
+					$('.container')[_t.page].style.height=0;
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
 					//_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
-					_t.ele.style.top=_t.scale.y*_t.page+'px';
+					_t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-					console.log(_t.page);
-					console.log(_t.scale);
+					
 				})
 				$('body').touch('down',function(){
+					
 					_t.page=_t.page-- <= 0 ? 0 :_t.page;
+					$('.container')[_t.page].style.height=_t.win.y+'px';
 					 //_t.ele.style[transform]='translate(-'+_t.scale.x*_t.page+ 'px,'+_t.scale.y*_t.page+'px)';
-					 _t.ele.style.top=_t.scale.y*_t.page+'px';
+					 _t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
 				})
 			},
@@ -141,7 +161,7 @@
 		scroll_bg.init();
 		var zh=document.body.height || document.documentElement.clientHeight;
 		alert(zh);
-		$('body')[0].style.height=zh+'px';
+		
 	}
 </script>
 </html>
