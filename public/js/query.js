@@ -22,10 +22,10 @@
 		css:function(obj){
 			var t=this;
 			t.each(t.sel,function(i,ele){
-				console.log(ele);
+				//console.log(ele);
 				t.each(obj,function(j,sty){
 					ele.style[j]=sty;
-					console.log(j+'-----'+sty);
+					//console.log(j+'-----'+sty);
 				})
 			})
 			return this;

@@ -40,11 +40,12 @@ window.onload=function(){
 		setTimeout(function(){player.play();},1000);
 		var scroll_bg={
 			bgimg:'',
-			win:'null',
+			win:[],
 			scale:'',
 			ele:'',
 			page:0,
 			status:false,
+			cav_list:[],
 			init:function(){
 				this.bgimg={x:1280,y:1024};
 				this.win={};
@@ -52,52 +53,54 @@ window.onload=function(){
 				var wh=window.innerHeight || document.body.clientHeight;
 				wh=wh;
 				var _t=this;
-				var canvas=document.getElementById('bg_cav');
+				var bg_star=$('.bg_star').sel;
 				this.win.y=document.body.height || document.documentElement.clientHeight || document.body.offsetHeight;
 				this.win.x=document.body.width || document.documentElement.clientWidth || document.body.offsetWidth;
 				this.scale.y=(this.bgimg.y-this.win.y)/2;
 				this.scale.x=(this.bgimg.x-this.win.x)/24;
 				this.ele=$('.bg_img_box img')[0];
-				canvas.width=this.win.x;
-				canvas.height=this.win.y;
+				for(var i=0,len=bg_star.length;i<len;i++) {
+					bg_star[i].width=this.win.x;
+					bg_star[i].height=this.win.y;
+					this.cav_list.push(bg_star[i].getContext('2d'));
+				}
 				console.log(this.win.x+'|------|'+this.win.y);
 				
 				$('.container').css({height:wh+'px',fontSize:'18px',color:'#EEF0F5'}).addClass('animate_z5');
-				
+				this.draw_star(this.cav_list[0]);
 				this.event();
-				//canvas bg crow
+			},
+			random:function(){
+				return{
+					x:Math.floor(30+Math.random()*(this.win.x-15)), // Math.floor(min+Math.random()*(max-min));
+					y:Math.floor(30+Math.random()*(this.win.y-70))
+				}
+			},
+			draw_star:function(context){
+				context.clearRect(0,0,this.win.x,this.win.y);
+				context.strokeStyle='#293869';//边框样式
+				context.fillStyle='#293869';
+				context.lineWidth=1;//图形边框宽度
+				var i=0,len=this.cav_list.length,_t=this;
+				function creat_star(center){
+					if(i>= len) return;
+					context.moveTo(center.x,center.y);
+					context.lineTo(center.x-45,center.y+35);
+					context.lineTo(center.x+15,center.y+20);
+					context.lineTo(center.x-45,center.y+10);
+					context.lineTo(center.x-10,center.y+40);
+					context.lineTo(center.x,center.y);
+					context.fill();
+				    context.stroke();
+				    i++;
+				    setTimeout(function(){
+				    	var b=_t.random();
+				    	creat_star(b);
+				    },1000)
+				}
+				var b=this.random();
+				setTimeout(function(){creat_star(b)},5000);
 
-				(function(){
-					function random(){
-						return{
-							x:Math.floor(30+Math.random()*(_t.win.x-15)), // Math.floor(min+Math.random()*(max-min));
-							y:Math.floor(30+Math.random()*(_t.win.y-70))
-						}
-					}
-					var context=canvas.getContext('2d');
-					context.strokeStyle='#293869';//边框样式
-					context.fillStyle='#293869';
-					context.lineWidth=1;//图形边框宽度
-					function creat_star(center){
-						context.moveTo(center.x,center.y);
-						 context.lineTo(center.x-45,center.y+35);
-						 context.lineTo(center.x+15,center.y+20);
-						 context.lineTo(center.x-45,center.y+10);
-						 context.lineTo(center.x-10,center.y+40);
-						 context.lineTo(center.x,center.y);
-						 context.fill();
-					         	context.stroke();
-					}
-					for(var i=0;i<3;i++){
-						var b=random();
-						console.log(b);
-						creat_star(b);
-					}
-					
-				         	
-             	
-          
-				}())
 			},
 			event:function(){
 				var _t=this,x=0,y=0,s;
@@ -105,6 +108,7 @@ window.onload=function(){
 					$('.container')[_t.page].style.height=0;
 					
 					_t.page=_t.page++ >= 2 ? 2 : _t.page;
+					_t.draw_star(_t.cav_list[_t.page]);
 					_t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
@@ -113,6 +117,7 @@ window.onload=function(){
 				$('body').touch('down',function(){
 					
 					_t.page=_t.page-- <= 0 ? 0 :_t.page;
+					_t.draw_star(_t.cav_list[_t.page]);
 					$('.container')[_t.page].style.height=_t.win.y+'px';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
 					 _t.ele.style.top=-_t.scale.y*_t.page+'px';
