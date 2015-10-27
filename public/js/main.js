@@ -71,7 +71,7 @@ window.onload=function(){
 					function random(){
 						return{
 							x:Math.floor(30+Math.random()*(_t.win.x-15)), // Math.floor(min+Math.random()*(max-min));
-							y:Math.floor(30+Math.random()*(_t.win.y-15))
+							y:Math.floor(30+Math.random()*(_t.win.y-70))
 						}
 					}
 					var context=canvas.getContext('2d');
