@@ -124,7 +124,7 @@ window.onload=function(){
 					_t.draw_star(_t.cav_list[_t.page]);
 					_t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
+					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.9+'px';
 					
 				})
 				$('body').touch('down',function(){
