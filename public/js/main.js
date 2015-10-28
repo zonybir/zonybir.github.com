@@ -125,24 +125,24 @@ window.onload=function(){
 					if(!_t.slider_status) return;
 					else _t.slider_status=false
 					$('.container')[_t.page].style.height=0;					
-					_t.slider_page.animate(_t.page);		
+					_t.slider_page.animateUp(_t.page);		
 					_t.page=_t.page++ >= 2 ? (function(){$('.con_one')[0].style.opacity=1;$('.con_one p').css({top:'0',left:'0'});return 0}()): _t.page;
 					$('.container')[_t.page].style.height=_t.height+'px';
 					_t.draw_star(_t.cav_list[_t.page]);
 					_t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.9+'px';
-					setTimeout(function(){_t.slider_status=true;},9000);					
+					setTimeout(function(){_t.slider_status=true;},6000);					
 				})
 				$('body').touch('down',function(){
 					if(!_t.slider_status || _t.page <= 0) return;
 					else {
 						_t.slider_status=false;
-						setTimeout(function(){_t.slider_status=true;},9000);
+						setTimeout(function(){_t.slider_status=true;},6000);
 					}					
 					$('.container')[_t.page].style.height=0;	
 					_t.page=_t.page-- <= 0 ? 0 :_t.page;
-					if (_t.page == 0) {$('.con_one')[0].style.opacity=1;$('.con_one p').css({top:'0',left:'0'});}
+					_t.slider_page.animateDown(_t.page);
 					_t.draw_star(_t.cav_list[_t.page]);
 					$('.container')[_t.page].style.height=_t.height+'px';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
@@ -155,8 +155,9 @@ window.onload=function(){
 			slider_page:{
 				ele_pageTwo:'',
 				ele_pageThree:'',
-				animate:function(num){
+				animateUp:function(num){
 					var _t=scroll_bg.slider_page;
+					console.log(num);
 					switch(num){
 						case 0:{
 							$('.con_one,.con_one p').styleText();
@@ -169,7 +170,22 @@ window.onload=function(){
 							break;
 						}
 						case 1:{
-
+							_t.ele_pageTwo.styleText();
+						}
+					}
+				},
+				animateDown:function(num){
+					var _t=scroll_bg.slider_page;
+					console.log(num);
+					switch(num){
+						case 0:{
+							$('.con_one')[0].style.opacity=1;
+							$('.con_one p').css({top:'0',left:'0'});
+							_t.ele_pageTwo.styleText();
+							break;
+						}
+						case 1:{
+							_t.ele_pageTwo.styleText();
 						}
 					}
 				}
