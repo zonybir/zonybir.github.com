@@ -117,6 +117,7 @@
 	query.fn.addevent=function(type,callback){
 		this.each(this.sel,function(i,ele){
 			var a=ele;
+			console.log(type);
 			if(a.addEventListener)	a.addEventListener(type,callback,false);
 			else if(a.attachEvent)	a.attachEvent('on'+type,function(event){return callback.call(a,event);})
 		})
