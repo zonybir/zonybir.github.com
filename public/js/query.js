@@ -30,6 +30,12 @@
 			})
 			return this;
 		},
+		styleText:function(str){
+			var _t=this;
+			_t.each(_t.sel,function(i,ele){
+				ele.style.cssText=str || '';
+			})
+		},
 		hasClass:function(ele,cls){
 			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
 		},
