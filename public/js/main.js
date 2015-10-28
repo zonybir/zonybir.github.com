@@ -27,8 +27,11 @@ window.onload=function(){
 				_t.player=$('#player')[0];
 				this.start();
 				this.controller();
-				setTimeout(function(){_t.player.play();$('.con_one')[0].style.opacity=1;
-						$('.con_one p').css({top:'0',left:'0'});},3000);
+				setTimeout(function(){
+					_t.player.play();$('.con_one')[0].style.opacity=1;
+					$('.con_one p').css({top:'0',left:'0'});
+					scroll_bg.slider_status=true;
+				},3000);
 			},
 			controller:function(){
 				var _t=this;
@@ -43,7 +46,6 @@ window.onload=function(){
 				});
 			}
 		} 
-		play_ani.init();
 		var scroll_bg={
 			bgimg:'',
 			win:[],
@@ -53,6 +55,7 @@ window.onload=function(){
 			page:0,
 			status:false,
 			cav_list:[],
+			slider_status:false,
 			init:function(){
 				this.bgimg={x:1280,y:1024};
 				this.win={};
@@ -76,7 +79,10 @@ window.onload=function(){
 				$('.container')[0].style.height=this.height+'px';
 				$('.bg_one')[0].style.height=this.height*3+'px';
 				this.draw_star(this.cav_list[0]);//首次加载绘制第一屏的star
+				this.slider_page.ele_pageTwo=$('.con_two p');
+				this.slider_page.ele_pageThree='';
 				this.event();//注册上下滑动监测
+
 			},
 			random:function(){
 				return{
@@ -116,17 +122,24 @@ window.onload=function(){
 			event:function(){
 				var _t=this,x=0,y=0,s;
 				$('body').touch('up',function(){
+					if(!_t.slider_status) return;
+					else _t.slider_status=false
 					$('.container')[_t.page].style.height=0;					
-					if (_t.page == 0)	$('.con_one,.con_one p').styleText();			
-					_t.page=_t.page++ >= 2 ? 0 : _t.page;
+					_t.slider_page.animate(_t.page);		
+					_t.page=_t.page++ >= 2 ? (function(){$('.con_one')[0].style.opacity=1;$('.con_one p').css({top:'0',left:'0'});return 0}()): _t.page;
 					$('.container')[_t.page].style.height=_t.height+'px';
 					_t.draw_star(_t.cav_list[_t.page]);
 					_t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
-					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.9+'px';					
+					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.9+'px';
+					setTimeout(function(){_t.slider_status=true;},9000);					
 				})
 				$('body').touch('down',function(){
-					if(_t.page <= 0) return;
+					if(!_t.slider_status || _t.page <= 0) return;
+					else {
+						_t.slider_status=false;
+						setTimeout(function(){_t.slider_status=true;},9000);
+					}					
 					$('.container')[_t.page].style.height=0;	
 					_t.page=_t.page-- <= 0 ? 0 :_t.page;
 					if (_t.page == 0) {$('.con_one')[0].style.opacity=1;$('.con_one p').css({top:'0',left:'0'});}
@@ -135,14 +148,38 @@ window.onload=function(){
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
 					 _t.ele.style.top=-_t.scale.y*_t.page+'px';
 					_t.ele.style.left=-_t.scale.x*_t.page+'px';
+						
 
 				})
+			},
+			slider_page:{
+				ele_pageTwo:'',
+				ele_pageThree:'',
+				animate:function(num){
+					var _t=scroll_bg.slider_page;
+					switch(num){
+						case 0:{
+							$('.con_one,.con_one p').styleText();
+							_t.ele_pageTwo[0].style.opacity=1;
+							_t.ele_pageTwo[1].style.top=0;
+							_t.ele_pageTwo[2].style.top=0;
+							_t.ele_pageTwo[3].style.left=0;
+							_t.ele_pageTwo[4].style.left=0;
+							_t.ele_pageTwo[5].style[transform]='scale(1)';
+							break;
+						}
+						case 1:{
+
+						}
+					}
+				}
 			},
 			setScroll:function(num){
 				if(document.body.scrollTop) document.body.scrollTop=num;
 				else if(document.documentElement.scrollTop) document.documentElement.scrollTop=num;
 			}
 		}
+		play_ani.init();
 		scroll_bg.init();
 		var zh=document.body.height || document.documentElement.clientHeight;		
 }
