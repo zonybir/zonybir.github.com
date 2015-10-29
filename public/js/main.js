@@ -80,7 +80,8 @@ window.onload=function(){
 				$('.bg_one')[0].style.height=this.height*3+'px';
 				this.draw_star(this.cav_list[0]);//首次加载绘制第一屏的star
 				this.slider_page.ele_pageTwo=$('.con_two p');
-				this.slider_page.ele_pageThree='';
+				this.slider_page.ele_pageThree=$('.con_three>div');
+				
 				this.event();//注册上下滑动监测
 
 			},
@@ -171,6 +172,14 @@ window.onload=function(){
 						}
 						case 1:{
 							_t.ele_pageTwo.styleText();
+							_t.ele_pageThree.addClass('anima');
+							break;
+						}
+						case 2:{
+							_t.ele_pageThree.removeClass('anima');
+							$('.con_one')[0].style.opacity=1;
+							$('.con_one p').css({top:'0',left:'0'});
+							break;
 						}
 					}
 				},
@@ -185,7 +194,14 @@ window.onload=function(){
 							break;
 						}
 						case 1:{
-							_t.ele_pageTwo.styleText();
+							_t.ele_pageThree.removeClass('anima');
+							_t.ele_pageTwo[0].style.opacity=1;
+							_t.ele_pageTwo[1].style.top=0;
+							_t.ele_pageTwo[2].style.top=0;
+							_t.ele_pageTwo[3].style.left=0;
+							_t.ele_pageTwo[4].style.left=0;
+							_t.ele_pageTwo[5].style[transform]='scale(1)';
+							break;
 						}
 					}
 				}
