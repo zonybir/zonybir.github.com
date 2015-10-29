@@ -218,6 +218,7 @@ window.onload=function(){
 				ele:'',
 				init:function(){
 					var _t=$('.strap'),x,y;
+					_t[0].style[transform]='rotateX('+0+'deg)'+'rotateZ('+0+'deg)';
 					_t.addevent('touchstart',function(event){
 						event=event || window.event;
 						event.stopPropagation();
@@ -233,7 +234,15 @@ window.onload=function(){
 						event.preventDefault();
 						event.cancelable=true;
 						event=event.touches[0];
-						this.style[transform]='rotateX('+(y-event.pageY)+'deg) rotateZ('+(x-event.pageX)+'deg)';
+						var cssText=_t.styleText(),
+						old_rotate_X=/rotateX\((\S+)deg\)/i.exec(cssText)[1],
+						old_rotate_Z=/rotateZ\((\S+)deg\)/i.exec(cssText)[1],
+						btX=((x-event.pageX)+parseInt(old_rotate_Z,10))%360,
+						btY=((y-event.pageY)+parseInt(old_rotate_X,10))%360;
+						/*console.log(old_rotate_X);*/
+						this.style[transform]='rotateX('+btY+'deg) rotateZ('+btX+'deg)';
+						x=event.pageX;
+						y=event.pageY;
 					})
 				}
 			}

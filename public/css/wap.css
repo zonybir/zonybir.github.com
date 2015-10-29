@@ -42,7 +42,7 @@ body{width: 100%;overflow: hidden;height: 559px;}
 
 .con_three{position: relative;box-sizing:border-box;margin: 0 auto;}
 .con_three>div{perspective:300px;width: 200px;height: 200px;margin: 0 auto;}
-.con_three .strap{transform-style: preserve-3d;width: 200px;height: 200px;position: relative;transform:rotateX(0deg);transform-origin:50% 50% -100px;transition:opacity 1.8s ease-in-out 0s;opacity: 1;}
+.con_three .strap{transform-style: preserve-3d;width: 200px;height: 200px;position: relative;transform:rotateX(0deg);transform-origin:50% 50% -100px;transition:opacity 1.8s ease-in-out 0s;opacity: 0;}
 .con_three .strap>div{position: absolute;width: 200px;height: 200px;font-size: 24px;text-align: center;padding-top: 88px;box-sizing:border-box;border:1px solid #040404;}
 
 .con_three .strap>div:nth-child(1){background-color: rgba(25,100,200,0.5);transform:rotateY(0deg) rotateX(0deg) translate3D(0,0,-200px);}

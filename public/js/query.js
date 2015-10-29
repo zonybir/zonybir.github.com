@@ -26,9 +26,8 @@
 		},
 		styleText:function(str){
 			var _t=this;
-			_t.each(_t.sel,function(i,ele){
-				ele.style.cssText=str || '';
-			})
+			if(typeof str === 'string') _t.each(_t.sel,function(i,ele){ele.style.cssText=str || '';})
+			else if(!str) return _t.sel[0].style.cssText; 
 		},
 		hasClass:function(ele,cls){
 			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
