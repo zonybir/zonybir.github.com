@@ -119,7 +119,7 @@
 			a.init();
 		})
 	}
-	//pc 端通用时间注册
+	//pc 端通用事件注册
 	query.fn.addevent=function(type,callback){
 		this.each(this.sel,function(i,ele){
 			var a=ele;
