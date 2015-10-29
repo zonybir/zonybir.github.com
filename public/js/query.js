@@ -4,11 +4,7 @@
 		else{
 			this.context=str=str.replace(/\s{2,}/g,' ').replace(/^\s|\s$/,'').replace(/\s?,\s?/,',');
 			var sel=this.sel=document.querySelectorAll(str);
-			//for(var i=0,len=this.sel.length;i<len;i++) query.push(sel[i]);
-			for(var i=0,len=sel.length;i<len;i++){
-				this[i]=sel[i];
-			}
-			
+			for(var i=0,len=sel.length;i<len;i++) this[i]=sel[i];			
 		}
 	};
 	query.prototype={
@@ -22,10 +18,8 @@
 		css:function(obj){
 			var t=this;
 			t.each(t.sel,function(i,ele){
-				//console.log(ele);
 				t.each(obj,function(j,sty){
 					ele.style[j]=sty;
-					//console.log(j+'-----'+sty);
 				})
 			})
 			return this;
@@ -43,7 +37,6 @@
 			var t=this;
 			this.each(this.sel,function(i,ele){
 				if(!t.hasClass(ele,cls)) ele.className=ele.className.replace(/\s+/g,' ')+' '+cls;
-				//console.log(i+'------->'+ele);
 			})
 			return this;
 		},
@@ -83,8 +76,6 @@
 					event=event.touches[0];
 					_t.x=event.pageX;
 					_t.y=event.pageY;
-					
-					//console.log(_t.x+'------>'+_t.y);
 				})
 				t.event('touchmove',_t.target,function(event){
 					if(_t.status) return;
@@ -92,10 +83,8 @@
 					event.preventDefault();
 					event.cancelable=true;
 					event=event.touches[0];
-					//console.log(event);
 					var bx=event.pageX -_t.x,
 					by=event.pageY-_t.y;
-					//console.log(bx+'-----'+by);
 					if (Math.abs(bx) >=30 || Math.abs(by)>=30){
 						_t.directive(bx,by);
 						_t.status=true;
@@ -123,7 +112,6 @@
 	query.fn.addevent=function(type,callback){
 		this.each(this.sel,function(i,ele){
 			var a=ele;
-			console.log(type);
 			if(a.addEventListener)	a.addEventListener(type,callback,false);
 			else if(a.attachEvent)	a.attachEvent('on'+type,function(event){return callback.call(a,event);})
 		})

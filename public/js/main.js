@@ -35,7 +35,9 @@ window.onload=function(){
 			},
 			controller:function(){
 				var _t=this;
-				_t.play.addevent('touchstart',function(){
+				_t.play.addevent('touchstart',function(event){
+					event=event || window.event;
+					console.log(event);
 					if(player.paused){
 						_t.player.play();
 						_t.start();
@@ -56,7 +58,7 @@ window.onload=function(){
 			status:false,
 			cav_list:[],
 			slider_status:false,
-			init:function(){
+			init:function(){//滑动屏幕各种参数样式初始化
 				this.bgimg={x:1280,y:1024};
 				this.win={};
 				this.scale={};
@@ -80,22 +82,22 @@ window.onload=function(){
 				$('.bg_one')[0].style.height=this.height*3+'px';
 				this.draw_star(this.cav_list[0]);//首次加载绘制第一屏的star
 				this.slider_page.ele_pageTwo=$('.con_two p');
-				this.slider_page.ele_pageThree=$('.con_three>div');
-				
+				this.slider_page.ele_pageThree=$('.con_three .strap');
+				this.rectTouch.init();
 				this.event();//注册上下滑动监测
 
 			},
-			random:function(){
+			random:function(){//生成随机 x  y   for star
 				return{
 					x:Math.floor(30+Math.random()*(this.win.x-15)), // Math.floor(min+Math.random()*(max-min));
 					y:Math.floor(30+Math.random()*(this.win.y*0.7-70))
 				}
 			},
-			draw_star:function(context){
+			draw_star:function(context){//动态绘制star
 				context.clearRect(0,0,this.win.x,this.win.y);
 				context.strokeStyle='#293869';//边框样式
-				context.fillStyle='#293869';
-				context.lineWidth=1;//图形边框宽度
+				context.fillStyle='#293869';//填充样式
+				context.lineWidth=1;
 				var i=0,len=this.cav_list.length,_t=this;
 				context.beginPath();
 				function creat_star(center){
@@ -120,7 +122,7 @@ window.onload=function(){
 				var b=this.random();
 				setTimeout(function(){creat_star(b)},2500);
 			},
-			event:function(){
+			event:function(){//上下滑动屏幕  及其 显示流程控制
 				var _t=this,x=0,y=0,s;
 				$('body').touch('up',function(){
 					if(!_t.slider_status) return;
@@ -153,10 +155,10 @@ window.onload=function(){
 
 				})
 			},
-			slider_page:{
+			slider_page:{//当前屏幕可见控制 以及各帕流程
 				ele_pageTwo:'',
 				ele_pageThree:'',
-				animateUp:function(num){
+				animateUp:function(num){//下一帕
 					var _t=scroll_bg.slider_page;
 					console.log(num);
 					switch(num){
@@ -184,7 +186,7 @@ window.onload=function(){
 						}
 					}
 				},
-				animateDown:function(num){
+				animateDown:function(num){//上一帕
 					var _t=scroll_bg.slider_page;
 					console.log(num);
 					switch(num){
@@ -211,6 +213,29 @@ window.onload=function(){
 			setScroll:function(num){
 				if(document.body.scrollTop) document.body.scrollTop=num;
 				else if(document.documentElement.scrollTop) document.documentElement.scrollTop=num;
+			},
+			rectTouch:{
+				ele:'',
+				init:function(){
+					var _t=$('.strap'),x,y;
+					_t.addevent('touchstart',function(event){
+						event=event || window.event;
+						event.stopPropagation();
+						event.preventDefault();
+						event.cancelable=true;
+						event=event.touches[0];
+						x=event.pageX;
+						y=event.pageY;
+					})
+					_t.addevent('touchmove',function(event){
+						event=event || window.event;
+						event.stopPropagation();
+						event.preventDefault();
+						event.cancelable=true;
+						event=event.touches[0];
+						this.style[transform]='rotateX('+(y-event.pageY)+'deg) rotateZ('+(x-event.pageX)+'deg)';
+					})
+				}
 			}
 		}
 		play_ani.init();
