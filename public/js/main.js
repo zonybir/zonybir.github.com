@@ -160,10 +160,9 @@ window.onload=function(){
 				ele_pageThree:'',
 				animateUp:function(num){//下一帕
 					var _t=scroll_bg.slider_page;
-					console.log(num);
 					switch(num){
 						case 0:{
-							$('.con_one,.con_one p').styleText();
+							$('.con_one,.con_one p').styleText('');
 							_t.ele_pageTwo[0].style.opacity=1;
 							_t.ele_pageTwo[1].style.top=0;
 							_t.ele_pageTwo[2].style.top=0;
@@ -173,7 +172,7 @@ window.onload=function(){
 							break;
 						}
 						case 1:{
-							_t.ele_pageTwo.styleText();
+							_t.ele_pageTwo.styleText('');
 							setTimeout(function(){_t.ele_pageThree.removeClass('back_anima');_t.ele_pageThree.addClass('anima');},2000);
 							break;
 						}
@@ -193,7 +192,7 @@ window.onload=function(){
 						case 0:{
 							$('.con_one')[0].style.opacity=1;
 							$('.con_one p').css({top:'0',left:'0'});
-							_t.ele_pageTwo.styleText();
+							_t.ele_pageTwo.styleText('');
 							break;
 						}
 						case 1:{
