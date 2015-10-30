@@ -29,9 +29,9 @@ window.onload=function(){
 				this.controller();
 				setTimeout(function(){
 					_t.player.play();$('.con_one')[0].style.opacity=1;
-					$('.con_one p').css({top:'0',left:'0'});
-					scroll_bg.slider_status=true;
-				},3000);
+					$('.con_one p').css({top:'0',left:'0'});					
+					setTimeout(function(){scroll_bg.slider_status=true;},4000)
+				},2000);
 			},
 			controller:function(){
 				var _t=this;
@@ -62,14 +62,13 @@ window.onload=function(){
 				this.bgimg={x:1280,y:1024};
 				this.win={};
 				this.scale={};
-				var wh=window.innerHeight || document.body.clientHeight;
-				wh=wh;
-				var _t=this;
-				var bg_star=$('.bg_star').sel;
+				var wh=window.innerHeight || document.body.clientHeight,
+				 _t=this,
+				 bg_star=$('.bg_star').sel;
 				this.height=this.win.y=document.body.height || document.documentElement.clientHeight || document.body.offsetHeight;//获取浏览器宽高
 				this.win.x=document.body.width || document.documentElement.clientWidth || document.body.offsetWidth;
 				this.scale.y=(this.bgimg.y-this.win.y)/3;
-				this.scale.x=(this.bgimg.x-this.win.x)/24;
+				this.scale.x=(this.bgimg.x-this.win.x)/12;
 				this.ele=$('.bg_img_box img')[0];
 				for(var i=0,len=bg_star.length;i<len;i++) {//初始化背景canvas 画布大小
 					bg_star[i].width=this.win.x;
@@ -132,8 +131,9 @@ window.onload=function(){
 					_t.page=_t.page++ >= 2 ? (function(){$('.con_one')[0].style.opacity=1;$('.con_one p').css({top:'0',left:'0'});return 0}()): _t.page;
 					$('.container')[_t.page].style.height=_t.height+'px';
 					_t.draw_star(_t.cav_list[_t.page]);
-					_t.ele.style.top=-_t.scale.y*_t.page+'px';
-					_t.ele.style.left=-_t.scale.x*_t.page+'px';
+					//_t.ele.style.top=-_t.scale.y*_t.page+'px';
+					//_t.ele.style.left=-_t.scale.x*_t.page+'px';
+					_t.ele.style[transform]='translate3D(-'+_t.scale.x*_t.page+'px,-'+_t.scale.y*_t.page+'px,'+0+')';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.9+'px';
 					setTimeout(function(){_t.slider_status=true;},6000);					
 				})
@@ -149,8 +149,9 @@ window.onload=function(){
 					_t.draw_star(_t.cav_list[_t.page]);
 					$('.container')[_t.page].style.height=_t.height+'px';
 					$('.bg_one')[0].style.top=-_t.scale.y*_t.page*1.8+'px';
-					 _t.ele.style.top=-_t.scale.y*_t.page+'px';
-					_t.ele.style.left=-_t.scale.x*_t.page+'px';
+					// _t.ele.style.top=-_t.scale.y*_t.page+'px';
+					//_t.ele.style.left=-_t.scale.x*_t.page+'px';
+					_t.ele.style[transform]='translate3D(-'+_t.scale.x*_t.page+'px,-'+_t.scale.y*_t.page+'px,'+0+')';
 						
 
 				})
@@ -187,7 +188,6 @@ window.onload=function(){
 				},
 				animateDown:function(num){//上一帕
 					var _t=scroll_bg.slider_page;
-					console.log(num);
 					switch(num){
 						case 0:{
 							$('.con_one')[0].style.opacity=1;
@@ -247,6 +247,5 @@ window.onload=function(){
 			}
 		}
 		play_ani.init();
-		scroll_bg.init();
-		var zh=document.body.height || document.documentElement.clientHeight;		
+		scroll_bg.init();		
 }

@@ -64,3 +64,6 @@ body{width: 100%;overflow: hidden;height: 559px;}
 
 .con_three .back_anima{opacity: 0;}
 .con_three .strap.back_anima>div{transition:all 2s ease-in-out 0s;}
+
+.strap>div span{display: block;width: 23px;height: 198px;float: right;border: 1px solid red;}
+.anima>div:nth-child(1) span{margin-top: -90px;}
