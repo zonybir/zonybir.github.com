@@ -54,8 +54,12 @@ body{width: 100%;overflow: hidden;height: 559px;}
 .con_two p:nth-child(6){transform:scale(0);}
 
 .con_three{position: relative;box-sizing:border-box;margin: 0 auto;}
-.con_three>div{perspective:300px;width: 200px;height: 200px;margin: 0 auto;}
+.con_three>div{perspective:300px;width: 200px;height: 200px;margin: 0 auto;
+-webkit-perspective:300px;-moz-perspective:300px;-o-perspective:300px;-ms-perspective:300px;
+}
 .con_three .strap{transform-style: preserve-3d;width: 200px;height: 200px;position: relative;transform:rotateX(0deg);transform-origin:50% 50% -100px;transition:opacity 1.8s ease-in-out 0s;opacity: 0;
+-webkit-transform-style: preserve-3d;-moz-transform-style: preserve-3d;-o-transform-style: preserve-3d;-ms-transform-style: preserve-3d;
+-webkit-transform:rotateX(0deg);-moz-transform:rotateX(0deg);-o-transform:rotateX(0deg);-ms-transform:rotateX(0deg);
 -webkit-transform-origin:50% 50% -100px;-moz-transform-origin:50% 50% -100px;-o-transform-origin:50% 50% -100px;-ms-transform-origin:50% 50% -100px;
 -webkit-transform:rotateX(0deg);-webkit-transform-origin:50% 50% -100px;-webkit-transition:opacity 1.8s ease-in-out 0s;
 }
