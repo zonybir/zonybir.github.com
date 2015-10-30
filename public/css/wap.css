@@ -51,7 +51,7 @@ body{width: 100%;overflow: hidden;height: 559px;}
 .con_two p:nth-child(3){top:-500px;}
 .con_two p:nth-child(4){left: 500px;}
 .con_two p:nth-child(5){left: -700px;}
-.con_two p:nth-child(6){transform:scale(0);}
+.con_two p:nth-child(6){transform:scale(0);-webkit-transform:scale(0);-moz-transform:scale(0);-o-transform:scale(0);-ms-transform:scale(0);}
 
 .con_three{position: relative;box-sizing:border-box;margin: 0 auto;}
 .con_three>div{perspective:300px;width: 200px;height: 200px;margin: 0 auto;
