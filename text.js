@@ -1,6 +1,6 @@
 var express = require('express');
 var app=express();
-app.set('port',3000);
+app.set('port',80);
 app.set('view engine', 'html');//默认使用模板
 
 //app.set('views', __dirname + '/views');

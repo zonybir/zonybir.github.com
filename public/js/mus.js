@@ -1,52 +1,7 @@
 window.onload=function(){
 	var defin=(function(){
-		var winH=document.body.height || document.documentElement.clientHeight,
-		winW=document.body.width || document.documentElement.clientWidth;
-		var play_ani={//音乐碟盘自动旋转及其控制
-			play_icon:'',
-			player:'',
-			oldDeg:0,
-			status:'',
-			start:function(){
-				var _t=this,deg=_t.oldDeg;
-				function animate(){
-					_t.oldDeg=deg=(deg+1)>= 360 ? 0 : (deg+1) ;
-					_t.play_icon.transform('rotate('+deg+'deg)');
-					_t.status=setTimeout(animate,20);
-				}
-				animate();
-			},
-			init:function(){
-				var _t=this;
-				_t.play_icon=$('.mus_icon');
-				//_t.play=$('.play');
-				//_t.player=$('#player')[0];
-				this.start();
-				//this.controller();
-				/*setTimeout(function(){
-					_t.player.play();$('.con_one')[0].style.opacity=1;
-					$('.con_one p').css({top:'0',left:'0'});					
-					setTimeout(function(){scroll_bg.slider_status=true;},4000)
-				},2000);*/
-			},
-			controller:function(){
-				var _t=this;
-				_t.play.addevent('touchstart',function(event){
-					event=event || window.event;
-					console.log(event);
-					if(player.paused){
-						_t.player.play();
-						_t.start();
-					}else{
-						_t.player.pause();
-						clearTimeout(_t.status);
-					}
-				});
-			}
-		}
-		//play_ani.init(); 
 		var img=new Image();
-		img.src='/images/mus_icon_bg.jpg';
+		img.src='../public/images/mus_icon_bg.jpg';
 		img.addEventListener('load', function(){
 			var canvas=$('#mus_img')[0];
 			var context=canvas.getContext('2d');
@@ -126,7 +81,7 @@ window.onload=function(){
 				canvas=$('#mus_schedule')[0];
 				this.canvas=canvas.getContext('2d');
 				_t.canvas.lineWidth=10;
-				_t.canvas.strokeStyle='#fff';
+				_t.canvas.strokeStyle='#C9434E';
 				_t.touchH=$('.schedule_line')[0];
 				if (!!time){
 					console.log(time);
