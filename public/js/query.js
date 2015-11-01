@@ -1,4 +1,5 @@
 (function(window){
+	var transform='';
 	function query(str){
 		if(typeof str !== 'string') return;
 		else{
@@ -6,6 +7,10 @@
 			var sel=this.sel=document.querySelectorAll(str);
 			for(var i=0,len=sel.length;i<len;i++) this[i]=sel[i];			
 		}
+		var ele=document.querySelectorAll('div')[0].style,u='undefined';
+		if (typeof ele.transform !== u) transform='transform';
+		else if(typeof ele.webkitTransform !== u) transform='webkitTransform';
+		else if(typeof ele.mozTransform !== u) transform='mozTransform';
 	};
 	query.prototype={
 		context:'',
@@ -46,6 +51,12 @@
 					var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
 					ele.className=ele.className.replace(reg,' ').replace(/\s+/,' ');
 				}
+			})
+		},
+		transform:function(str){
+			var t=this;
+			t.each(t.sel,function(i,ele){
+				ele.style[transform]=str;
 			})
 		},
 		eq:function(index){
@@ -115,5 +126,6 @@
 			else if(a.attachEvent)	a.attachEvent('on'+type,function(event){return callback.call(a,event);})
 		})
 	}
+	
 	window.$=function(str){return new query(str)};
 }(window))

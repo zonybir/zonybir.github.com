@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/public'));//设置静态文件 请求加载
 app.set('view engine','html');
 app.set('view',__dirname+'./view')
 app.get('/',function(req,res){
-	res.sendfile('./view/wap_h5.html');
+	res.sendfile('./view/music.html');
 });
 app.listen(app.get('port'));
 console.log('This server start...');
