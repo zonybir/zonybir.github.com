@@ -4,7 +4,8 @@ html,body{height: 100%;overflow: hidden;}
 
 .loading_cover p{text-align: center;font-style: 14px;color: #000;margin-left: -10px;}
 
-.bg_img{background: url('../images/mus_bg.jpeg') no-repeat center center;background-size: auto 100%; }
+.bg_img{background: url('../images/mus_bg.jpeg') no-repeat center center;background-size: auto 100%;opacity: 1;transition:opacity 1s ease-in-out 0s; }
+.hide_c{opacity: 0;}
 .container{padding: 0 15px;height: 100%;width: 100%;box-sizing:border-box;}
 
 .alignMiddle{display: table;}

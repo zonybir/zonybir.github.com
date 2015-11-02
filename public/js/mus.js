@@ -62,7 +62,7 @@ window.onload=function(){
 				this.touchH.style.transform='rotate('+num*(180/Math.PI)+'deg)';
 			},
 			init:function(){
-				mus_bg.init();
+				
 				this.player=$('#player')[0];
 				var _t=this,
 				time=this.player.duration,
@@ -70,14 +70,14 @@ window.onload=function(){
 				this.canvas=canvas.getContext('2d');
 				_t.canvas.lineWidth=10;
 				_t.canvas.strokeStyle='#C9434E';
-				_t.touchH=$('.schedule_line')[0];
-				if (!!time){
+				_t.touchH=$('.schedule_line')[0];				
+				this.player.onplay=function(){
+					$('.loading_cover').addClass('hide_c');
+					setTimeout(function(){$('.loading_cover').css({display:'none'})},3000);
 					this.time.radian=Math.PI*2/time;
 					this.time.setCurrent();
 					_t.controll();
-				}
-				this.player.onplay=function(){
-					alert(1111);
+					mus_bg.init();
 				}
 			},
 			controll:function(){
