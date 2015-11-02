@@ -29,7 +29,7 @@ window.onload=function(){
 					context.lineWidth=4;
 					context.stroke();
 					_t.start();					
-					_t.init='';
+					
 				} , false);
 			},
 		}
@@ -62,7 +62,7 @@ window.onload=function(){
 				this.touchH.style.transform='rotate('+num*(180/Math.PI)+'deg)';
 			},
 			init:function(){
-				
+				mus_bg.init();
 				this.player=$('#player')[0];
 				var _t=this,
 				time=this.player.duration,
@@ -74,10 +74,10 @@ window.onload=function(){
 				this.player.onplay=function(){
 					$('.loading_cover').addClass('hide_c');
 					setTimeout(function(){$('.loading_cover').css({display:'none'})},3000);
-					this.time.radian=Math.PI*2/time;
-					this.time.setCurrent();
+					_t.time.radian=Math.PI*2/time;
+					_t.time.setCurrent();
 					_t.controll();
-					mus_bg.init();
+					mus_bg.init='';
 				}
 			},
 			controll:function(){
