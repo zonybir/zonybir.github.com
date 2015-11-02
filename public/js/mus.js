@@ -72,11 +72,12 @@ window.onload=function(){
 				_t.canvas.strokeStyle='#C9434E';
 				_t.touchH=$('.schedule_line')[0];				
 				this.player.onplay=function(){
-					$('.loading_cover').addClass('hide_c');
-					setTimeout(function(){$('.loading_cover').css({display:'none'})},3000);
 					_t.time.radian=Math.PI*2/time;
 					_t.time.setCurrent();
 					_t.controll();
+					$('.loading_cover').addClass('hide_c');
+					setTimeout(function(){$('.loading_cover').css({display:'none'})},4000);
+					
 					
 				}
 			},
