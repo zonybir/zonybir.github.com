@@ -29,7 +29,7 @@ window.onload=function(){
 					context.lineWidth=4;
 					context.stroke();
 					_t.start();					
-					
+					mus_bg.init='';
 				} , false);
 			},
 		}
@@ -77,7 +77,7 @@ window.onload=function(){
 					_t.time.radian=Math.PI*2/time;
 					_t.time.setCurrent();
 					_t.controll();
-					mus_bg.init='';
+					
 				}
 			},
 			controll:function(){
@@ -86,7 +86,6 @@ window.onload=function(){
 					e.preventDefault();
 					e.cancelable=true;
 				}
-				console.log(1111);
 				$('.schedule_line').addevent('touchstart',function(event){
 					event = event || window.event;
 					stopDefault(event);
