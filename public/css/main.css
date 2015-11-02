@@ -1,5 +1,10 @@
 html,body{height: 100%;overflow: hidden;}
-.bg_img{background: url('../images/mus_bg.jpeg') no-repeat center center;}
+.loading_cover{width: 100%;height: 100%;background-color: #fff;position: relative;}
+.loading_cover>div{position: absolute;left: 50%;top: 50%;margin-top: -16px;margin-left: -16px;}
+
+.loading_cover p{text-align: center;font-style: 14px;color: #000;margin-left: -10px;}
+
+.bg_img{background: url('../images/mus_bg.jpeg') no-repeat center center;background-size: auto 100%; }
 .container{padding: 0 15px;height: 100%;width: 100%;box-sizing:border-box;}
 
 .alignMiddle{display: table;}
@@ -17,10 +22,10 @@ border-color: #89604A #606B1A #785935 #6A7A1E;
 box-sizing:border-box;
 }
 .schedule_line{position: absolute;z-index: 6;left: 50%;top: -10px;width: 10px;height: 110px;
-background-color: rgba(48, 69, 98, 0.51);transform-origin:0 100%;transform:rotate(30deg);
+/*background-color: rgba(48, 69, 98, 0.51);*/transform-origin:0 100%;transform:rotate(30deg);
 }
-.schedule_line>div{width: 10px;height: 10px;background-color: red;}
-.pen{width: 10px;height: 200px;}
+.schedule_line>div{width: 10px;height: 10px;background-color: red;position: relative;z-index: 998;}
+pen{width: 40px;height: 40px;border: 1px solid red;position: relative;z-index: 999;top:-10px;left: -10px;}
 
 .img_box canvas{position: absolute;top: 10px;left: 10px;border-radius: 50%;overflow: hidden;opacity: 0.75;}
 .img_box canvas#mus_schedule{top: 0px;left: 0px;border-radius: 0;opacity: 1;}

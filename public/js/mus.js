@@ -1,28 +1,13 @@
 window.onload=function(){
 	var defin=(function(){
-		var img=new Image();
-		img.src='../public/images/mus_icon_bg.jpg';
-		img.addEventListener('load', function(){
-			var canvas=$('#mus_img')[0];
-			var context=canvas.getContext('2d');
-			//context.rotate(10);
-			context.drawImage(img,0,0,200,200);
-			context.clearRect(80,80,40,40);
-			//context.rect(10,10,30,30);
-			context.fillStyle='red';
-			context.lineWidth=4;
-			context.stroke();
-
-
-
-			mus_bg.init();
-		} , false);
+		
 		var mus_bg={
 			mus_bg_icon:'',
 			player:'',
 			oldDeg:0,
 			status:'',
 			start:function(){
+				if(typeof this.init === 'function') {setTimeout(function(){mus_bg.start();},500);return};
 				var _t=this,deg=_t.oldDeg;
 				function animate(){
 					_t.oldDeg=deg=(deg+1)>= 360 ? 0 : (deg+1) ;
@@ -32,17 +17,20 @@ window.onload=function(){
 				animate();
 			},
 			init:function(){
-				//console.log(ele);
 				var _t=this;
-				this.mus_bg_icon=$('#mus_img');				//_t.play=$('.play');
-				//_t.player=$('#player')[0];
-				this.start();
-				//this.controller();
-				/*setTimeout(function(){
-					_t.player.play();$('.con_one')[0].style.opacity=1;
-					$('.con_one p').css({top:'0',left:'0'});					
-					setTimeout(function(){scroll_bg.slider_status=true;},4000)
-				},2000);*/
+				this.mus_bg_icon=$('#mus_img');
+				var img=new Image();
+				img.src='../public/images/mus_icon_bg.jpg';
+				img.addEventListener('load', function(){
+					var context=$('#mus_img')[0].getContext('2d');
+					context.drawImage(img,0,0,200,200);
+					context.clearRect(80,80,40,40);
+					context.fillStyle='red';
+					context.lineWidth=4;
+					context.stroke();
+					_t.start();					
+					_t.init='';
+				} , false);
 			},
 		}
 
@@ -65,29 +53,61 @@ window.onload=function(){
 				}
 
 			},
-			drawCurrent:function(num){
+			drawCurrent:function(num){//动态绘制 播放进度 以及旋转臂
 				this.canvas.clearRect(0,0,this.canvas.width,this.canvas.height);
 				this.canvas.beginPath();				
 				this.canvas.arc(110,110,105,-Math.PI/2,num-Math.PI/2);
 				this.canvas.stroke();
 				this.canvas.closePath();
 				this.touchH.style.transform='rotate('+num*(180/Math.PI)+'deg)';
-
 			},
 			init:function(){
+				mus_bg.init();
 				this.player=$('#player')[0];
 				var _t=this,
 				time=this.player.duration,
-				canvas=$('#mus_schedule')[0];
+				canvas=$('#mus_schedule')[0];//播放进度 canvas
 				this.canvas=canvas.getContext('2d');
 				_t.canvas.lineWidth=10;
 				_t.canvas.strokeStyle='#C9434E';
 				_t.touchH=$('.schedule_line')[0];
 				if (!!time){
-					console.log(time);
 					this.time.radian=Math.PI*2/time;
 					this.time.setCurrent();
+					_t.controll();
 				}
+				this.player.onplay=function(){
+					alert(1111);
+				}
+			},
+			controll:function(){
+				var x,y,t=this,mx,my;
+				function stopDefault(e){
+					e.preventDefault();
+					e.cancelable=true;
+				}
+				console.log(1111);
+				$('.schedule_line').addevent('touchstart',function(event){
+					event = event || window.event;
+					stopDefault(event);
+					event=event.touches[0];
+					x=event.pageX;
+					y=event.pageY;
+					console.log(x+'----s--'+y);
+				});
+				$('.schedule_line').addevent('touchmoce',function(event){
+					event = event || window.event;
+					stopDefault(event);
+					event=event.touches[0];
+					mx=event.pageX;
+					my=event.pageY;
+					console.log(mx+'-----'+my);
+				});
+				$('.schedule_line ').addevent('touchend',function(event){
+					event = event || window.event;
+					stopDefault(event);
+					event=event.touches[0];
+				})
 			}
 		}
 		player.init();
