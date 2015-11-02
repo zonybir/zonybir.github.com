@@ -74,9 +74,12 @@ window.onload=function(){
 				this.player.onplay=function(){
 					_t.time.radian=Math.PI*2/time;
 					_t.time.setCurrent();
-					_t.controll();
-					$('.loading_cover').addClass('hide_c');
-					setTimeout(function(){$('.loading_cover').css({display:'none'})},4000);
+					_t.controll();					
+					setTimeout(function(){
+						$('.loading_cover').addClass('hide_c');
+						setTimeout(function(){$('.loading_cover').css({display:'none'})},4000);
+					},1500);
+					
 					
 					
 				}
