@@ -29,7 +29,7 @@ body{width: 100%;overflow: hidden;height: 559px;}
 .animate_z5{transition:height 2s ease-in-out 0s;
 -webkit-transition:height 2s linear 0s;-moz-transition:height 2s ease-in-out 0s;-o-transition:height 2s ease-in-out 0s;-ms-transition:height 2s ease-in-out 0s;
 }
-.container p{text-align: center;font-size: 24px;color: #FFF;}
+.container p{text-align: center;font-size: 16px;color: #FFF;}
 
 .con_one{box-sizing:border-box;margin-top: 40%;background-color: rgba(23,23,23,0.6);padding: 10px 20px 20px;position: relative;opacity: 0;transition:opacity 1s ease-in-out 0s;
 -webkit-transition:opacity 1s ease-in-out 0s;-moz-transition:opacity 1s ease-in-out 0s;-o-transition:opacity 1s ease-in-out 0s;-ms-transition:opacity 1s ease-in-out 0s;
@@ -42,8 +42,8 @@ body{width: 100%;overflow: hidden;height: 559px;}
 .con_one p:nth-child(3){left: -700px}
 .con_one p:nth-child(4){left: 500px}
 
-.con_two{position: relative;box-sizing:border-box;padding-right: 30px;margin-top: 40%;}
-.con_two p{width: 20px;float: right;margin-right: 10px; overflow: hidden;width: 24px;position: relative;color: rgba(44, 114, 151, 0.69);transition:all 4.5s ease-in-out 0s;
+.con_two{position: relative;box-sizing:border-box;padding-right: 30px;margin-top: 20%;}
+.con_two p{width: 20px;float: right;margin-right: 10px; overflow: hidden;width: 24px;position: relative;color: #57ADDA;transition:all 4.5s ease-in-out 0s;
 -webkit-transition:all 4.5s ease-in-out 0s;-moz-transition:all 4.5s ease-in-out 0s;-ms-transition:all 4.5s ease-in-out 0s;-o-transition:all 4.5s ease-in-out 0s;
 }
 .con_two p:nth-child(1){opacity: 0;}
