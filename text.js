@@ -12,6 +12,6 @@ app.get('/',function(req,res){
 	res.sendfile('./view/music.html');
 });
 app.listen(app.get('port'));
- console.log('ok');
+ console.log('o2k');
 console.log('This server start...');
 
