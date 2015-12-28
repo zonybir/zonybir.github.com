@@ -1,8 +1,12 @@
 (function(window){
 	var transform='';
 	function query(str){
-		if(typeof str !== 'string') return;
-		else{
+		if(typeof str !== 'string'){
+			if(typeof str === 'object'){
+			this.sel=[str];
+			var sel=str;
+			}else return;
+		}else{
 			this.context=str=str.replace(/\s{2,}/g,' ').replace(/^\s|\s$/,'').replace(/\s?,\s?/,',');
 			var sel=this.sel=document.querySelectorAll(str);
 			for(var i=0,len=sel.length;i<len;i++) this[i]=sel[i];			
